@@ -2,29 +2,54 @@ pipeline {
   agent any
 
   environment {
-    IMG = "wp-local:test"
-    NET = "wpnet"
+    AWS_REGION = "eu-west-1"
+
+    
+    ECR_REPO   = "597765856364.dkr.ecr.eu-west-1.amazonaws.com/custom-wordpress"
+
+    ASG_NAME   = "wp-asg"
+
+    // Можно оставить latest, или делать tag по коммиту
+    IMAGE_TAG  = "latest"
   }
 
   stages {
-    stage('Build') {
+    stage('Checkout') {
+      steps { checkout scm }
+    }
+
+    stage('Build image') {
       steps {
-        sh "docker build -t ${IMG} ."
+        sh """
+          set -eux
+          docker build -t custom-wordpress:${IMAGE_TAG} .
+        """
       }
     }
 
-    stage('Deploy') {
+    stage('Login & Push to ECR') {
       steps {
         sh """
-          docker network create ${NET} || true
-          docker rm -f wp || true
+          set -eux
 
-          docker run -d --name wp --network ${NET} -p 8090:80 \
-            -e WORDPRESS_DB_HOST=wpdb:3306 \
-            -e WORDPRESS_DB_USER=wpuser \
-            -e WORDPRESS_DB_PASSWORD=wppass \
-            -e WORDPRESS_DB_NAME=wordpress \
-            ${IMG}
+          aws sts get-caller-identity
+
+          aws ecr get-login-password --region ${AWS_REGION} | \
+            docker login --username AWS --password-stdin $(echo ${ECR_REPO} | cut -d/ -f1)
+
+          docker tag custom-wordpress:${IMAGE_TAG} ${ECR_REPO}:${IMAGE_TAG}
+          docker push ${ECR_REPO}:${IMAGE_TAG}
+        """
+      }
+    }
+
+    stage('ASG Instance Refresh') {
+      steps {
+        sh """
+          set -eux
+          aws autoscaling start-instance-refresh \
+            --auto-scaling-group-name ${ASG_NAME} \
+            --preferences MinHealthyPercentage=50,InstanceWarmup=180
         """
       }
     }
