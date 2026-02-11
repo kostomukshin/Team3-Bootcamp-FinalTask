@@ -134,6 +134,7 @@ jobs:
             REASON=$(aws autoscaling describe-instance-refreshes \
               --auto-scaling-group-name "${ASG_NAME}" \
               --instance-refresh-ids "${REFRESH_ID}" \
+              --preferences MinHealthyPercentage=50,InstanceWarmup=120 \
               --region "${AWS_REGION}" \
               --query "InstanceRefreshes[0].StatusReason" --output text)
 
