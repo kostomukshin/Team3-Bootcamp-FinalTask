@@ -1,4 +1,4 @@
-name: Disaster Rollback (stable <- previous)
+name: Disaster Rollback (stable <- previous, refresh)
 
 on:
   workflow_dispatch: {}
@@ -17,9 +17,26 @@ jobs:
       - name: Verify AWS identity
         run: aws sts get-caller-identity
 
+      - name: Validate 'previous' tag exists
+        run: |
+          set -euo pipefail
+          PREV_DIGEST=$(aws ecr describe-images \
+            --repository-name "${ECR_REPO_NAME}" \
+            --image-ids imageTag=previous \
+            --region "${AWS_REGION}" \
+            --query 'imageDetails[0].imageDigest' \
+            --output text 2>/dev/null || true)
+
+          if [ -z "$PREV_DIGEST" ] || [ "$PREV_DIGEST" = "None" ]; then
+            echo "ERROR: 'previous' tag not found in ECR. Cannot rollback."
+            exit 1
+          fi
+
+          echo "previous digest: $PREV_DIGEST"
+
       - name: Set stable <- previous
         run: |
-          set -euxo pipefail
+          set -euo pipefail
 
           MANIFEST=$(aws ecr batch-get-image \
             --repository-name "${ECR_REPO_NAME}" \
@@ -27,6 +44,11 @@ jobs:
             --region "${AWS_REGION}" \
             --query 'images[0].imageManifest' \
             --output text)
+
+          if [ -z "$MANIFEST" ] || [ "$MANIFEST" = "None" ]; then
+            echo "ERROR: Could not read manifest for 'previous'."
+            exit 1
+          fi
 
           aws ecr put-image \
             --repository-name "${ECR_REPO_NAME}" \
@@ -37,6 +59,7 @@ jobs:
           echo "Rollback applied: stable <- previous"
 
       - name: Start ASG Instance Refresh
+        if: ${{ success() }}
         id: start_refresh
         run: |
           set -euxo pipefail
@@ -49,6 +72,7 @@ jobs:
           echo "Started Instance Refresh: ${REFRESH_ID}"
 
       - name: Wait for Instance Refresh to complete
+        if: ${{ success() }}
         run: |
           set -euo pipefail
           REFRESH_ID="${{ steps.start_refresh.outputs.refresh_id }}"
