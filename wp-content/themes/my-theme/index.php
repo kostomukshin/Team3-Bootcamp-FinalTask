@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
-<main style="padding:16px;">
-  <p>Home page content</p>
+<main style="padding:20px;сolor:#ffffff">
+  <p>Hello Guys!</p>
 </main>
 
 <?php get_footer(); ?>
