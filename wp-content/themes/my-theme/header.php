@@ -64,63 +64,31 @@ body{
 
 /* HERO */
 
-.hero{
-  max-width:1200px;
-  margin:100px auto;
-  padding:0 20px;
-  display:flex;
-  flex-direction:column;
-  gap:30px;
-}
+<section class="hero">
+  <h1>
+    Scalable <span>Cloud Architecture</span><br>
+    Powered by AWS & CI/CD
+  </h1>
 
-.hero h1{
-  font-size:52px;
-  font-weight:800;
-  line-height:1.1;
-  max-width:800px;
-}
+  <p>
+    Production-ready WordPress deployment using Docker, Terraform,
+    Auto Scaling, Application Load Balancer and GitHub Actions.
+  </p>
 
-.hero h1 span{
-  color: var(--accent);
-}
+  <div class="hero-buttons">
+    <a href="https://docs.google.com/presentation/d/16FV44nByLytCpr4fS2Nfs1ISrOcllW1ZACQEdZcVv_M/edit?usp=sharing" 
+       target="_blank" 
+       class="btn btn-primary">
+       View Architecture
+    </a>
 
-.hero p{
-  font-size:18px;
-  color:var(--muted);
-  max-width:650px;
-}
-
-.hero-buttons{
-  display:flex;
-  gap:20px;
-  margin-top:20px;
-}
-
-.btn{
-  padding:14px 28px;
-  border-radius:4px;
-  font-weight:600;
-  text-decoration:none;
-  transition:.3s ease;
-}
-
-.btn-primary{
-  background: var(--accent);
-  color:#fff;
-}
-
-.btn-primary:hover{
-  background:#c84dff;
-}
-
-.btn-outline{
-  border:1px solid var(--accent);
-  color:var(--accent);
-}
-
-.btn-outline:hover{
-  background: var(--accent-soft);
-}
+    <a href="https://github.com/kostomukshin/Team3-Bootcamp-FinalTask/tree/main" 
+       target="_blank" 
+       class="btn btn-outline">
+       Git Repository
+    </a>
+  </div>
+</section>
 
 /* SHOWCASE */
 

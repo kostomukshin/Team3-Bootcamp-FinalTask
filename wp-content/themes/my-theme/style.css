@@ -3,8 +3,68 @@ Theme Name: My Theme
 Version: 1.0
 */
 
-body { background-color: #A100FF !important; }
-#page, .site, .wp-site-blocks { background-color: transparent !important; }
+.site-footer{
+  margin-top:120px;
+  background: linear-gradient(180deg, #120022, #0b0018);
+  border-top:1px solid var(--line);
+  padding:60px 20px 30px;
+}
 
+.footer-container{
+  max-width:1200px;
+  margin:0 auto;
+  display:flex;
+  justify-content:space-between;
+  gap:60px;
+  flex-wrap:wrap;
+}
 
+.footer-column{
+  flex:1;
+  min-width:220px;
+}
 
+.footer-column h3,
+.footer-column h4{
+  margin-bottom:15px;
+  color:var(--white);
+}
+
+.footer-column p{
+  color:var(--muted);
+  line-height:1.6;
+}
+
+.footer-column ul{
+  list-style:none;
+}
+
+.footer-column ul li{
+  margin-bottom:10px;
+}
+
+.footer-column a{
+  color:var(--accent);
+  text-decoration:none;
+  transition:0.3s ease;
+}
+
+.footer-column a:hover{
+  color:#c84dff;
+}
+
+.footer-bottom{
+  margin-top:50px;
+  text-align:center;
+  color:var(--muted);
+  font-size:14px;
+  border-top:1px solid var(--line);
+  padding-top:20px;
+}
+
+@media(max-width:768px){
+  .footer-container{
+    flex-direction:column;
+    gap:40px;
+  }
+}
