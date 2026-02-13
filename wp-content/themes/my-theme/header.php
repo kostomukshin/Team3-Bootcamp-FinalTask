@@ -9,6 +9,7 @@
 :root{
   --accent: #a100ff;
   --accent-soft: rgba(161,0,255,.15);
+  --bg-dark: #0f0f1a;
   --bg-gradient: radial-gradient(circle at 20% 20%, #1a0033, #0f0f1a 60%);
   --white: #ffffff;
   --muted: rgba(255,255,255,.6);
@@ -24,10 +25,9 @@ body{
 }
 
 /* HEADER */
-
 .site-header{
-  border-bottom:1px solid var(--line);
-  backdrop-filter:blur(10px);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(10px);
 }
 
 .site-header__inner{
@@ -53,14 +53,13 @@ body{
 .pill{
   padding:10px 18px;
   border-radius:999px;
-  background:var(--accent-soft);
+  background: var(--accent-soft);
   border:1px solid var(--accent);
   font-size:14px;
   font-weight:600;
 }
 
 /* HERO */
-
 .hero{
   max-width:1200px;
   margin:100px auto;
@@ -77,7 +76,7 @@ body{
 }
 
 .hero h1 span{
-  color:var(--accent);
+  color: var(--accent);
 }
 
 .hero p{
@@ -94,14 +93,14 @@ body{
 
 .btn{
   padding:14px 28px;
-  border-radius:6px;
+  border-radius:4px;
   font-weight:600;
   text-decoration:none;
   transition:.3s ease;
 }
 
 .btn-primary{
-  background:var(--accent);
+  background: var(--accent);
   color:#fff;
 }
 
@@ -115,11 +114,10 @@ body{
 }
 
 .btn-outline:hover{
-  background:var(--accent-soft);
+  background: var(--accent-soft);
 }
 
 /* SHOWCASE */
-
 .showcase{
   max-width:1200px;
   margin:80px auto;
@@ -137,6 +135,7 @@ body{
 
 .section-block h2{
   font-size:36px;
+  font-weight:700;
 }
 
 .section-block h2 span{
@@ -145,12 +144,15 @@ body{
 
 .section-subtitle{
   color:var(--muted);
+  max-width:600px;
 }
 
 .image-card{
+  margin-top:20px;
   border-radius:12px;
   overflow:hidden;
   border:1px solid var(--line);
+  background:rgba(255,255,255,.03);
   transition:0.3s ease;
 }
 
@@ -164,7 +166,6 @@ body{
 }
 
 /* BEAUTIFUL FOOTER */
-
 .site-footer{
   margin-top:120px;
   background:linear-gradient(180deg,#120022,#0b0018);
@@ -198,6 +199,7 @@ body{
 
 .footer-column ul{
   list-style:none;
+  padding-left:0;
 }
 
 .footer-column ul li{
@@ -207,11 +209,23 @@ body{
 .footer-column a{
   color:var(--accent);
   text-decoration:none;
+  position:relative;
   transition:0.3s ease;
 }
 
-.footer-column a:hover{
-  color:#c84dff;
+.footer-column a::after{
+  content:'';
+  position:absolute;
+  width:0%;
+  height:2px;
+  bottom:0;
+  left:0;
+  background-color:#c84dff;
+  transition:0.3s;
+}
+
+.footer-column a:hover::after{
+  width:100%;
 }
 
 .footer-bottom{
@@ -231,7 +245,6 @@ body{
 
 <?php wp_head(); ?>
 </head>
-
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
@@ -241,7 +254,7 @@ body{
       <div class="brand__title"><?php bloginfo('name'); ?></div>
       <div class="brand__meta">Cloud DevOps Bootcamp Project</div>
     </div>
-    <div class="pill">v1.6 • ASG • CI/CD Ready</div>
+    <div class="pill">v1.6 • ASG: 100–200 • warmup 120s</div>
   </div>
 </header>
 
@@ -257,13 +270,13 @@ body{
   </p>
 
   <div class="hero-buttons">
-    <a href="https://docs.google.com/presentation/d/16FV44nByLytCpr4fS2Nfs1ISrOcllW1ZACQEdZcVv_M/edit?usp=sharing"
+    <a href="https://docs.google.com/presentation/d/16FV44nByLytCpr4fS2Nfs1ISrOcllW1ZACQEdZcVv_M/edit?usp=sharing" 
        target="_blank" rel="noopener noreferrer"
        class="btn btn-primary">
        View Architecture
     </a>
 
-    <a href="https://github.com/kostomukshin/Team3-Bootcamp-FinalTask/tree/main"
+    <a href="https://github.com/kostomukshin/Team3-Bootcamp-FinalTask/tree/main" 
        target="_blank" rel="noopener noreferrer"
        class="btn btn-outline">
        Git Repository
@@ -272,46 +285,51 @@ body{
 </section>
 
 <section class="showcase">
-
   <div class="section-block">
     <h2>Our <span>Dream Team</span></h2>
     <div class="image-card">
-      <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/team.png' ); ?>" alt="Our Dream Team">
+      <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/team.png'); ?>" alt="Our Dream Team">
     </div>
   </div>
 
   <div class="section-block">
     <h2>Solution <span>Architecture</span></h2>
     <div class="image-card">
-      <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/architecture.png' ); ?>" alt="Solution Architecture">
+      <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/architecture.png'); ?>" alt="Solution Architecture">
     </div>
   </div>
 
   <div class="section-block">
     <h2>Kanban <span>Board</span></h2>
     <div class="image-card">
-      <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/kanban.png' ); ?>" alt="Kanban Board">
+      <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/kanban.png'); ?>" alt="Kanban Board">
     </div>
   </div>
-
 </section>
 
 <footer class="site-footer">
   <div class="footer-container">
-
     <div class="footer-column">
       <h3><?php bloginfo('name'); ?></h3>
-      <p>Cloud DevOps Bootcamp Final Project.</p>
+      <p>Cloud DevOps Bootcamp Final Project</p>
     </div>
 
     <div class="footer-column">
       <h4>Resources</h4>
       <ul>
-        <li><a href="https://github.com/kostomukshin/Team3-Bootcamp-FinalTask/tree/main" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
-        <li><a href="https://docs.google.com/presentation/d/16FV44nByLytCpr4fS2Nfs1ISrOcllW1ZACQEdZcVv_M/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Project Presentation</a></li>
+        <li><a href="https://github.com/kostomukshin/Team3-Bootcamp-FinalTask/tree/main" target="_blank">GitHub Repository</a></li>
+        <li><a href="https://docs.google.com/presentation/d/16FV44nByLytCpr4fS2Nfs1ISrOcllW1ZACQEdZcVv_M/edit?usp=sharing" target="_blank">Project Presentation</a></li>
       </ul>
     </div>
 
+    <div class="footer-column">
+      <h4>Contacts</h4>
+      <ul>
+        <li><a href="mailto:team3@bootcamp.com">team3@bootcamp.com</a></li>
+        <li><a href="https://www.linkedin.com/in/yourprofile" target="_blank">LinkedIn</a></li>
+        <li><a href="https://github.com/kostomukshin" target="_blank">GitHub</a></li>
+      </ul>
+    </div>
   </div>
 
   <div class="footer-bottom">
