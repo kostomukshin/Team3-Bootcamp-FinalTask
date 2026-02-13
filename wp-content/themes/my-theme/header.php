@@ -306,37 +306,6 @@ body{
     </div>
   </div>
 </section>
-
-<footer class="site-footer">
-  <div class="footer-container">
-    <div class="footer-column">
-      <h3><?php bloginfo('name'); ?></h3>
-      <p>Cloud DevOps Bootcamp Final Project</p>
-    </div>
-
-    <div class="footer-column">
-      <h4>Resources</h4>
-      <ul>
-        <li><a href="https://github.com/kostomukshin/Team3-Bootcamp-FinalTask/tree/main" target="_blank">GitHub Repository</a></li>
-        <li><a href="https://docs.google.com/presentation/d/16FV44nByLytCpr4fS2Nfs1ISrOcllW1ZACQEdZcVv_M/edit?usp=sharing" target="_blank">Project Presentation</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-column">
-      <h4>Contacts</h4>
-      <ul>
-        <li><a href="mailto:team3@bootcamp.com">team3@bootcamp.com</a></li>
-        <li><a href="https://www.linkedin.com/in/yourprofile" target="_blank">LinkedIn</a></li>
-        <li><a href="https://github.com/kostomukshin" target="_blank">GitHub</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    © <?php echo date("Y"); ?> Team 3 — Built in the Cloud 🚀
-  </div>
-</footer>
-
-<?php wp_footer(); ?>
+  
 </body>
 </html>
