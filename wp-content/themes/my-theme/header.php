@@ -3,14 +3,12 @@
 <head>
   <meta charset="<?php bloginfo('charset'); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
   <title><?php bloginfo('name'); ?></title>
 
-  <style>
+<style>
 :root{
   --accent: #a100ff;
   --accent-soft: rgba(161,0,255,.15);
-  --bg-dark: #0f0f1a;
   --bg-gradient: radial-gradient(circle at 20% 20%, #1a0033, #0f0f1a 60%);
   --white: #ffffff;
   --muted: rgba(255,255,255,.6);
@@ -28,8 +26,8 @@ body{
 /* HEADER */
 
 .site-header{
-  border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(10px);
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(10px);
 }
 
 .site-header__inner{
@@ -44,7 +42,6 @@ body{
 .brand__title{
   font-size:24px;
   font-weight:700;
-  letter-spacing:.5px;
 }
 
 .brand__meta{
@@ -56,7 +53,7 @@ body{
 .pill{
   padding:10px 18px;
   border-radius:999px;
-  background: var(--accent-soft);
+  background:var(--accent-soft);
   border:1px solid var(--accent);
   font-size:14px;
   font-weight:600;
@@ -64,31 +61,62 @@ body{
 
 /* HERO */
 
-<section class="hero">
-  <h1>
-    Scalable <span>Cloud Architecture</span><br>
-    Powered by AWS & CI/CD
-  </h1>
+.hero{
+  max-width:1200px;
+  margin:100px auto;
+  padding:0 20px;
+  display:flex;
+  flex-direction:column;
+  gap:30px;
+}
 
-  <p>
-    Production-ready WordPress deployment using Docker, Terraform,
-    Auto Scaling, Application Load Balancer and GitHub Actions.
-  </p>
+.hero h1{
+  font-size:52px;
+  font-weight:800;
+  line-height:1.1;
+}
 
-  <div class="hero-buttons">
-    <a href="https://docs.google.com/presentation/d/16FV44nByLytCpr4fS2Nfs1ISrOcllW1ZACQEdZcVv_M/edit?usp=sharing" 
-       target="_blank" 
-       class="btn btn-primary">
-       View Architecture
-    </a>
+.hero h1 span{
+  color:var(--accent);
+}
 
-    <a href="https://github.com/kostomukshin/Team3-Bootcamp-FinalTask/tree/main" 
-       target="_blank" 
-       class="btn btn-outline">
-       Git Repository
-    </a>
-  </div>
-</section>
+.hero p{
+  font-size:18px;
+  color:var(--muted);
+  max-width:650px;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:20px;
+  margin-top:20px;
+}
+
+.btn{
+  padding:14px 28px;
+  border-radius:6px;
+  font-weight:600;
+  text-decoration:none;
+  transition:.3s ease;
+}
+
+.btn-primary{
+  background:var(--accent);
+  color:#fff;
+}
+
+.btn-primary:hover{
+  background:#c84dff;
+}
+
+.btn-outline{
+  border:1px solid var(--accent);
+  color:var(--accent);
+}
+
+.btn-outline:hover{
+  background:var(--accent-soft);
+}
 
 /* SHOWCASE */
 
@@ -109,7 +137,6 @@ body{
 
 .section-block h2{
   font-size:36px;
-  font-weight:700;
 }
 
 .section-block h2 span{
@@ -118,15 +145,12 @@ body{
 
 .section-subtitle{
   color:var(--muted);
-  max-width:600px;
 }
 
 .image-card{
-  margin-top:20px;
   border-radius:12px;
   overflow:hidden;
   border:1px solid var(--line);
-  background:rgba(255,255,255,.03);
   transition:0.3s ease;
 }
 
@@ -139,19 +163,69 @@ body{
   display:block;
 }
 
-/* FOOTER */
+/* BEAUTIFUL FOOTER */
 
-footer{
+.site-footer{
+  margin-top:120px;
+  background:linear-gradient(180deg,#120022,#0b0018);
   border-top:1px solid var(--line);
-  padding:30px 20px;
+  padding:60px 20px 30px;
+}
+
+.footer-container{
+  max-width:1200px;
+  margin:0 auto;
+  display:flex;
+  justify-content:space-between;
+  gap:60px;
+  flex-wrap:wrap;
+}
+
+.footer-column{
+  flex:1;
+  min-width:220px;
+}
+
+.footer-column h3,
+.footer-column h4{
+  margin-bottom:15px;
+}
+
+.footer-column p{
+  color:var(--muted);
+  line-height:1.6;
+}
+
+.footer-column ul{
+  list-style:none;
+}
+
+.footer-column ul li{
+  margin-bottom:10px;
+}
+
+.footer-column a{
+  color:var(--accent);
+  text-decoration:none;
+  transition:0.3s ease;
+}
+
+.footer-column a:hover{
+  color:#c84dff;
+}
+
+.footer-bottom{
+  margin-top:50px;
   text-align:center;
   color:var(--muted);
   font-size:14px;
-  margin-top:100px;
+  border-top:1px solid var(--line);
+  padding-top:20px;
 }
 
 @media(max-width:768px){
   .hero h1{font-size:36px}
+  .footer-container{flex-direction:column;gap:40px;}
 }
 </style>
 
@@ -167,10 +241,7 @@ footer{
       <div class="brand__title"><?php bloginfo('name'); ?></div>
       <div class="brand__meta">Cloud DevOps Bootcamp Project</div>
     </div>
-
-    <div class="pill">
-      v1.6 • ASG: 100–200 • warmup 120s
-    </div>
+    <div class="pill">v1.6 • ASG • CI/CD Ready</div>
   </div>
 </header>
 
@@ -186,8 +257,17 @@ footer{
   </p>
 
   <div class="hero-buttons">
-    <a href="#" class="btn btn-primary">View Architecture</a>
-    <a href="#" class="btn btn-outline">Git Repository</a>
+    <a href="https://docs.google.com/presentation/d/16FV44nByLytCpr4fS2Nfs1ISrOcllW1ZACQEdZcVv_M/edit?usp=sharing"
+       target="_blank" rel="noopener noreferrer"
+       class="btn btn-primary">
+       View Architecture
+    </a>
+
+    <a href="https://github.com/kostomukshin/Team3-Bootcamp-FinalTask/tree/main"
+       target="_blank" rel="noopener noreferrer"
+       class="btn btn-outline">
+       Git Repository
+    </a>
   </div>
 </section>
 
@@ -195,38 +275,48 @@ footer{
 
   <div class="section-block">
     <h2>Our <span>Dream Team</span></h2>
-    <p class="section-subtitle">
-      The engineers behind the architecture, automation and deployment.
-    </p>
     <div class="image-card">
-      <img src="<?php echo get_template_directory_uri(); ?>/assets/team.png" alt="Our Dream Team">
+      <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/team.png' ); ?>" alt="Our Dream Team">
     </div>
   </div>
 
   <div class="section-block">
     <h2>Solution <span>Architecture</span></h2>
-    <p class="section-subtitle">
-      AWS-based scalable infrastructure with CI/CD automation.
-    </p>
     <div class="image-card">
-      <img src="<?php echo get_template_directory_uri(); ?>/assets/architecture.png" alt="Solution Architecture">
+      <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/architecture.png' ); ?>" alt="Solution Architecture">
     </div>
   </div>
 
   <div class="section-block">
     <h2>Kanban <span>Board</span></h2>
-    <p class="section-subtitle">
-      Agile workflow management and sprint tracking.
-    </p>
     <div class="image-card">
-      <img src="<?php echo get_template_directory_uri(); ?>/assets/kanban.png" alt="Kanban Board">
+      <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/kanban.png' ); ?>" alt="Kanban Board">
     </div>
   </div>
 
 </section>
 
-<footer>
-   <?php echo date("Y"); ?> DevOps Bootcamp Project • Built with Docker & AWS
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-column">
+      <h3><?php bloginfo('name'); ?></h3>
+      <p>Cloud DevOps Bootcamp Final Project.</p>
+    </div>
+
+    <div class="footer-column">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="https://github.com/kostomukshin/Team3-Bootcamp-FinalTask/tree/main" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
+        <li><a href="https://docs.google.com/presentation/d/16FV44nByLytCpr4fS2Nfs1ISrOcllW1ZACQEdZcVv_M/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Project Presentation</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © <?php echo date("Y"); ?> Team 3 — Built in the Cloud 🚀
+  </div>
 </footer>
 
 <?php wp_footer(); ?>
